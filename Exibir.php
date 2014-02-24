@@ -6,11 +6,24 @@ $conn = new Connection();
 $conn->Connect();
 
 $dao = new Dao();
-$dao->Select();
 ?>
 <html>
     <title></title>
     <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        function clickTrue(id,checklist,ok){
+            if(ok==1) {
+                ok = 0;
+            } else {
+                ok = 1;
+            }
+            $.ajax({
+            url: "clickTrue.php?id="+id+"&checklist="+checklist+"&ok="+ok,
+            context: document.body
+          });
+        }
+    </script>
         <style>
             #text{
                 background:white;
@@ -43,5 +56,8 @@ $dao->Select();
         </style>
     </head>
 <body>
+    <?php
+        $dao->Select();
+    ?>
 </body>
 </html>
